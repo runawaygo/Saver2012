@@ -71,6 +71,7 @@ pong.Game.prototype.step_ = function(dt) {
         logs=[];
         ii++;
     }*/
+	console.log(dt)
     var pos = this.ball.getPosition(), size = this.world.getSize();
     pos.x += this.v.x * dt * this.SPEED;
     pos.y += this.v.y * dt * this.SPEED;
