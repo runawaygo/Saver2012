@@ -4,10 +4,20 @@
 <head>
 	<title>IG</title>
 	<meta charset="utf-8"/>
+	<script src="../../lib/jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="../closure/closure/goog/base.js"></script>
 	<script type="text/javascript" src="IG.js"></script>
+	<script>
+		$(function(){
+			$.getJSON('/friends',function(data){
+				IG.start(data);
+						
+			});
+		});
+		
+	</script>
 </head>
 
-<body onload="IG.start()"></body>
+<body></body>
 
 </html>

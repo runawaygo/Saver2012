@@ -6,69 +6,61 @@ goog.require('lime.animation.Spawn');
 goog.require('lime.animation.FadeTo');
 goog.require('lime.animation.ScaleTo');
 goog.require('lime.animation.MoveTo');
+goog.require('IG.Person');
 
 
 
 IG.Idol = function(player){
-	lime.Sprite.call(this);
-	this.RADIUS = 20;
-    this.SPEED = .45;
-
-	this.status = 0;
-	this.data = player;
-
-	this.setSize(100, 100);
-    this.setAnchorPoint(.5, .5);
-
-	var car = new lime.fill.Frame('asserts/car.png',20,40,90,90);
-	var carNode = new lime.Sprite().setSize(100,100).setFill(car).setPosition(0,20).setRotation(-5);
+	IG.Person.call(this, player);
 	
-	var headshot = new lime.fill.Frame(player.profile_image_url,0,0,180,180);
-	var headshotNode = new lime.Circle().setSize(50,50).setStroke(4,0,128,128,0.6).setFill(headshot).setPosition(-20,-10).setOpacity(0.9);
-		
+	this.words = ["大家都来关注我啊", "我麾下6万粉丝啊", "下辈子一定关注你啊"];
+	this.dieWords = ["让你不关注我","安息吧"];
+
+	this.say();
+	this.headshot.setSize(50, 50).setStroke(4,0,128,128,0.8);
+
+	this.lightY = 105;
+	this.groundY = 60;
+	goog.events.listen(this, ['mousedown', 'touchstart'], this.light);
+};
+
+goog.inherits(IG.Idol, IG.Person);
+
+
+IG.Idol.prototype.initBody = function()
+{
+	var bodyImg = new lime.fill.Frame("asserts/car" + (Math.random()*4>>0) + ".png", 0, 0, 350, 256);
+	this.body.setFill(bodyImg).setSize(100,100).setPosition(0, 25);
+
+	this.appendChild(this.body);
+};
+
+IG.Idol.prototype.initAnimation = function()
+{
 	var headshotSequence = new lime.animation.Sequence(
-		new lime.animation.MoveBy(6,0).setDuration(0.6)
-		,new lime.animation.MoveBy(-6,0).setDuration(0.6)
-	);
-	var headshotLoop = new lime.animation.Loop(headshotSequence);
-	headshotLoop.addTarget(headshotNode);
-	headshotLoop.play();
-	
-	var carSequence = new lime.animation.Sequence(
 		new lime.animation.RotateBy(8).setDuration(0.6)
 		,new lime.animation.RotateBy(-8).setDuration(0.6)
 	);
-	var actionLoop = new lime.animation.Loop(carSequence);
-	actionLoop.addTarget(carNode)
+	var headshotLoop = new lime.animation.Loop(headshotSequence);
+	headshotLoop.addTarget(this.headshot);
+	headshotLoop.play();
+	
+	var bodySequence = new lime.animation.Sequence(
+		new lime.animation.RotateBy(8).setDuration(0.6)
+		,new lime.animation.RotateBy(-8).setDuration(0.6)
+	);
+	var actionLoop = new lime.animation.Loop(bodySequence);
+	actionLoop.addTarget(this.body)
 	actionLoop.play();
-	
-	goog.events.listen(this,['mousedown','touchstart'],function(e){
-		alert('shit');
-		
-		console.log('mouse down');
-	});
-	
-	
-	this.appendChild(carNode);
-	this.appendChild(headshotNode);
 };
 
-goog.inherits(IG.Idol, lime.Sprite);
 
-
-IG.Idol.prototype.startMove = function()
+IG.Person.prototype.light = function()
 {
-	lime.scheduleManager.schedule(this.move, this);
-	this.status = 1;
-};
-
-IG.Idol.prototype.endMove = function(){
-	lime.scheduleManager.unschedule(this.move,this);
-	this.status = 2;
+	this.runAction(new lime.animation.FadeTo(0).setDuration(.5));
 	
-}
-
-IG.Idol.prototype.move = function(dt){
-	var position  = this.getPosition();
-	this.setPosition(position.x - this.SPEED * dt,this.getPosition().y);
+	
+	var light = new IG.Light(0, this.lightY);
+	this.appendChild(light);
+	this.die();
 };
