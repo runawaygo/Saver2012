@@ -11,9 +11,7 @@ goog.require('pong.Game');
 
 // entrypoint
 pong.start = function() {
-
 	lime.scheduleManager.setDisplayRate(1000 / 60);
-
 	pong.director = new lime.Director(document.body, 320, 460);
 	var scene = new lime.Scene(),
 	    layer = new lime.Layer();
