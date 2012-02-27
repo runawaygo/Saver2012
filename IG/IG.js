@@ -141,7 +141,7 @@ IG.start = function(data){
 			target2.appendChild(person);
 		}
 		
-	},this,1000);
+	},this,2000);
 		
 	// boat
 	this.onBoatPersons = [];
