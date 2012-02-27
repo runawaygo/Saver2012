@@ -25,7 +25,6 @@ goog.require('IG.ScoreBoard');
 
 goog.require('IG.Person');
 goog.require('IG.Idol');
-goog.require('IG.Data');
 goog.require('IG.Bomb');
 goog.require('IG.Arrived');
 goog.require('IG.Soul');
