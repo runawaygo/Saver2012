@@ -36,7 +36,7 @@ IG.Bomb = function(player){
 	this.appendChild(bomb);
 	
 	var headshot = this.headshot = new lime.Circle().setSize(50,50);
-	var headshotImg = new lime.fill.Frame(player.profile_image_url, 0, 0, 50, 50);
+	var headshotImg = new lime.fill.Frame(player.profile_image_url, 0, 0, 180, 180);
 	headshot.setFill(headshotImg);
 	this.appendChild(headshot);
 	this.appendChild(this.effectSprite);

@@ -86,7 +86,7 @@ IG.Person.prototype.init = function(player)
 
 IG.Person.prototype.initHeadshot = function(player)
 {
-	var headshotImg = new lime.fill.Frame(player.profile_image_url, 0, 0, 50, 50);
+	var headshotImg = new lime.fill.Frame(player.profile_image_url, 0, 0, 180, 180);
 	this.headshot.setFill(headshotImg).setSize(50,50).setPosition(3, -10).setStroke(4,"#23a400");
 
 	this.appendChild(this.headshot);

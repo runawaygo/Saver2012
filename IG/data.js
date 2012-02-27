@@ -1,5 +1,4 @@
-goog.provide("IG.Data");
-var data = [{
+window.data = [{
     "id": 1932198873,
     "screen_name": "去搞定",
     "name": "去搞定",
@@ -117,10 +116,4 @@ var data = [{
     }
 }];
 
-
-IG.Data = function(){};
-
-IG.Data.prototype.getData = function(){
-	return data;
-}
 

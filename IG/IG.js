@@ -150,9 +150,13 @@ IG.start = function(data){
 	var boat=new lime.Sprite().setSize(b_width,g_height).setPosition(-g_width/2+b_width/2,0);
 	target2.appendChild(boat);
 	
-	
+	// endScene.endAudio = new lime.audio.Audio("/asserts/bomb/end.mp3");
 	window.xxx = function(){
+		// endScene.endAudio.stop();
+		// endScene.endAudio.play();
+		
 		director.replaceScene(endScene);
+		
 	};
 	
 	this.victory = function(){
@@ -254,9 +258,11 @@ IG.start = function(data){
 	//director
 	var gameState = new IG.GameState();
 	startScene.appendChild(gameState.start);
+	//gameState.start.startAudio = new lime.audio.Audio('asserts/bomb/start.mp3');
 	endScene.appendChild(gameState.end);
 	
 	goog.events.listen(gameState.start, ['touchstart', 'mousedown'], function(e){
+		
 		director.replaceScene(scene);
 	});
 	

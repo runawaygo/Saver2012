@@ -17,7 +17,7 @@ IG.Arrived = function(player){
 	this.data = player;
 	
 	var headshot = this.headshot = new lime.Circle().setSize(55,55);
-	var headshotImg = new lime.fill.Frame(player.profile_image_url, 0, 0, 50, 50);
+	var headshotImg = new lime.fill.Frame(player.profile_image_url, 0, 0, 180, 180);
 	headshot.setFill(headshotImg).setStroke('3',0,128,128,0.4);
 	
 	var action = new lime.animation.Loop(new lime.animation.Sequence(

@@ -20,7 +20,7 @@ IG.Soul = function(player){
 		.setSize(66,75)
 		.setStroke('6',0,128,128,0.4);
 
-	var headshotImg = new lime.fill.Frame(player.profile_image_url, 0, 0, 50, 50);
+	var headshotImg = new lime.fill.Frame(player.profile_image_url, 0, 0, 180, 180);
 	headshot.setFill(headshotImg);
 
 	var actionSequence = new lime.animation.Sequence(
